@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Catraca Unilab</string>
+    <string name="hint_email">Usuário</string>
+    <string name="hint_password">Senha</string>
+    <string name="hint_name">Nome</string>
+    <string name="btn_login">LOGIN</string>
+    <string name="btn_register">REGISTRAR</string>
+    <string name="btn_link_to_register">Não é um usuário? Cadastre-se agora</string>
+    <string name="btn_link_to_login">Já cadastrado! Realizar login</string>
+    <string name="welcome">Bem-vindo(a)</string>
+    <string name="btn_logout">LOGOUT</string>
+    <string name="name">Nome</string>
+</resources>
