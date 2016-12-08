@@ -8,9 +8,13 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.HashMap;
+
+import javax.security.auth.login.LoginException;
 
 import br.edu.unilab.catraca.R;
 import br.edu.unilab.catraca.helper.SQLiteHandler;
@@ -25,7 +29,9 @@ public class MainActivity extends Activity {
 
     private TextView txtName;
     private TextView txtEmail;
+    private Button btnExtrato;
     private Button btnLogout;
+
 
     private SQLiteHandler db;
     private SessionManager session;
@@ -37,6 +43,7 @@ public class MainActivity extends Activity {
 
         txtName = (TextView) findViewById(R.id.name);
         txtEmail = (TextView) findViewById(R.id.email);
+        btnExtrato = (Button) findViewById(R.id.btnExtrato);
         btnLogout = (Button) findViewById(R.id.btnLogout);
 
         // SqLite database handler
@@ -58,6 +65,18 @@ public class MainActivity extends Activity {
         // Displaying the user details on the screen
         txtName.setText(name);
         txtEmail.setText(email);
+
+        // Extrato button click event
+        btnExtrato.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // Launching the login activity
+                Intent intent = new Intent(MainActivity.this, ExtratoActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         // Logout button click event
         btnLogout.setOnClickListener(new View.OnClickListener() {

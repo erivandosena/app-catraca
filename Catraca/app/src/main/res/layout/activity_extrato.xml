@@ -17,7 +17,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/welcome"
+            android:text="@string/extrato"
             android:textSize="20dp" />
 
         <TextView
@@ -35,30 +35,19 @@
             android:textSize="13dp" />
 
         <!-- Link to Login Screen -->
+        <Button
+            android:id="@+id/btnMain"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dip"
+            android:background="@color/btn_login_bg"
+            android:text="@string/btn_main"
+            android:textAllCaps="false"
+            android:textColor="@color/btn_login"
+            android:textSize="15dp"
+            android:elevation="1dp"/>
+
         <!--
-        <Button
-            android:id="@+id/btnLinkToRegisterScreen"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dip"
-            android:background="@null"
-            android:text="@string/btn_link_to_register"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="15dp" />
-            -->
-
-        <Button
-            android:id="@+id/btnExtrato"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dip"
-            android:background="@color/btn_logut_bg"
-            android:text="@string/btn_extrato"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="15dp" />
-
         <Button
             android:id="@+id/btnLogout"
             android:layout_width="fill_parent"
@@ -69,6 +58,7 @@
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="15dp" />
+            -->
     </LinearLayout>
 
 </RelativeLayout>

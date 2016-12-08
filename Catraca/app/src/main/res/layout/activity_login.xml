@@ -1,12 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@color/bg_login"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:padding="10dp" >
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:background="@color/bg_login"
+              android:gravity="center"
+              android:orientation="vertical"
+              android:padding="10dp"
+              android:weightSum="1">
+
+    <ImageView
+        android:layout_width="243dp"
+        android:id="@+id/imgLogo"
+        android:src="@drawable/ic_launcher_logo"
+        android:layout_weight="0.65"
+        android:layout_height="50dp"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="17dp">
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -14,7 +29,8 @@
         android:layout_gravity="center"
         android:orientation="vertical"
         android:paddingLeft="20dp"
-        android:paddingRight="20dp" >
+        android:paddingRight="20dp"
+        android:layout_weight="0.18">
 
         <EditText
             android:id="@+id/email"
@@ -55,6 +71,7 @@
 
         <!-- Link to Login Screen -->
 
+        <!--
         <Button
             android:id="@+id/btnLinkToRegisterScreen"
             android:layout_width="fill_parent"
@@ -65,6 +82,7 @@
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="15dp" />
+            -->
     </LinearLayout>
 
 </LinearLayout>
