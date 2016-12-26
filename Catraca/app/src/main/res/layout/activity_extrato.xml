@@ -1,64 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="${relativePackage}.${activityClass}" >
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="${relativePackage}.${activityClass}"
+                tools:ignore="ExtraText">
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:gravity="center"
-        android:orientation="vertical" >
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:headerDividersEnabled="true"
+            android:layout_above="@+id/btnPrinciapl">
+        </ListView>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/extrato"
-            android:textSize="20dp" />
-
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:textColor="@color/lbl_name"
-            android:textSize="24dp" />
-
-        <TextView
-            android:id="@+id/email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="13dp" />
-
-        <!-- Link to Login Screen -->
+        <!-- Link to Principal Screen -->
         <Button
-            android:id="@+id/btnMain"
+            android:id="@+id/btnPrinciapl"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dip"
             android:background="@color/btn_login_bg"
             android:text="@string/btn_main"
             android:textAllCaps="false"
             android:textColor="@color/btn_login"
-            android:textSize="15dp"
-            android:elevation="1dp"/>
-
-        <!--
-        <Button
-            android:id="@+id/btnLogout"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dip"
-            android:background="@color/btn_logut_bg"
-            android:text="@string/btn_logout"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="15dp" />
-            -->
-    </LinearLayout>
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"/>
+            />
 
 </RelativeLayout>
