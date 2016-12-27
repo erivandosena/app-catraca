@@ -42,7 +42,7 @@
             android:background="@color/btn_logut_bg"
             android:text="@string/btn_extrato"
             android:textAllCaps="false"
-            android:textColor="@color/white"
+            android:textColor="@android:color/white"
             android:textSize="15dp" />
 
         <Button
@@ -53,7 +53,7 @@
             android:background="@color/btn_logut_bg"
             android:text="@string/btn_logout"
             android:textAllCaps="false"
-            android:textColor="@color/white"
+            android:textColor="@android:color/white"
             android:textSize="15dp" />
     </LinearLayout>
 

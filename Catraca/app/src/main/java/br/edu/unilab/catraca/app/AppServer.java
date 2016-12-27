@@ -32,69 +32,10 @@ public class AppServer {
 
     private static final HttpAuthentication AUTH_HEADER  = new HttpBasicAuthentication("catraca", "CaTr@CaUniLab2015");
 
-//    private static ResponseEntity<?> getResponseEntity(String uriRecurso, Class<?> obj) {
-//        ArrayList<?> lista = new ArrayList<>();
-//        ResponseEntity<?> responseEntity = null;
-//        try {
-//            final String url = AppConfig.URL_RECURSO_EXTRATO + "/" + uriRecurso;
-//            HttpHeaders requestHeaders = new HttpHeaders();
-//            requestHeaders.setAuthorization(AUTH_HEADER);
-//            requestHeaders.setContentType(new MediaType("application", "json", Charset.forName("utf-8")));
-//            HttpEntity<?> requestEntity = new HttpEntity<>(requestHeaders);
-//            RestTemplate restTemplate = new RestTemplate();
-//            restTemplate.setMessageConverters(getMessageConverters());
-//            responseEntity = restTemplate.exchange(url, HttpMethod.GET, requestEntity, obj.getClass());
-//            if (responseEntity.getStatusCode() != HttpStatus.OK)
-//                return null;
-//        } catch (Exception e) {
-//            Log.d(TAG, e.getMessage());
-//        }
-//        return responseEntity;
-//    }
-//
-//    public static ArrayList<Usuario> getRecursoExtratoUsuario(String uri) {
-//        ArrayList<Usuario> lista = new ArrayList<>();
-//        try {
-//            ResponseEntity<Usuario> responseEntity =(ResponseEntity<Usuario>) getResponseEntity(uri, Usuario.class);
-//            if (responseEntity.getStatusCode() == HttpStatus.OK) {
-//                if (!responseEntity.getBody().getUsuario().isEmpty()) {
-//                    lista=responseEntity.getBody().getUsuario();
-//                } else {
-//                    return lista;
-//                }
-//            } else {
-//                return lista;
-//            }
-//        } catch (Exception e) {
-//            Log.d(TAG, e.getMessage());
-//        }
-//        return lista;
-//    }
-//
-//    public static ArrayList<Extrato> getRecursoExtratoExtrato(String uri) {
-//        ArrayList<Extrato> lista = new ArrayList<>();
-//        try {
-//            ResponseEntity<Extrato> responseEntity =(ResponseEntity<Extrato>) getResponseEntity(uri, Extrato.class);
-//            if (responseEntity.getStatusCode() == HttpStatus.OK) {
-//                if (!responseEntity.getBody().getExtrato().isEmpty()) {
-//                    lista=responseEntity.getBody().getExtrato();
-//                } else {
-//                    return lista;
-//                }
-//            } else {
-//                return lista;
-//            }
-//        } catch (Exception e) {
-//            Log.d(TAG, e.getMessage());
-//        }
-//        return lista;
-//    }
-
     public static ArrayList<Usuario> getRecursoUsuarioLogin(String login) {
         ArrayList<Usuario> lista = new ArrayList<Usuario>();
         try {
             final String url = AppConfig.URL_RECURSO_USUARIO + "/" + login;
-            //HttpAuthentication authHeader = new HttpBasicAuthentication("catraca", "CaTr@CaUniLab2015");
             HttpHeaders requestHeaders = new HttpHeaders();
             requestHeaders.setAuthorization(AUTH_HEADER);
             requestHeaders.setContentType(new MediaType("application", "json", Charset.forName("utf-8")));
@@ -148,4 +89,5 @@ public class AppServer {
         converters.add(new MappingJackson2HttpMessageConverter());
         return converters;
     }
+
 }

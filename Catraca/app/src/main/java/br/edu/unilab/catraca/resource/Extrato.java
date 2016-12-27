@@ -20,6 +20,12 @@ public class Extrato implements Serializable {
     public Extrato() {
     }
 
+    public Extrato(String descricao, String data, String valor) {
+        this.setDescricao(descricao);
+        this.setData(data);
+        this.setValor(valor);
+    }
+
     public Extrato(ArrayList<Extrato> extrato, String descricao, String data, String valor) {
         this.setExtrato(extrato);
         this.setDescricao(descricao);
