@@ -1,10 +1,11 @@
 package br.edu.unilab.catraca.activity;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -28,11 +29,11 @@ import br.edu.unilab.catraca.util.Util;
 
 import static com.android.volley.VolleyLog.TAG;
 
-public class LoginActivity extends Activity {
+public class LoginActivity extends AppCompatActivity {
     private Button btnLogin;
-    private ImageView imgLogoPrincipal;
-    private EditText inputEmail;
-    private EditText inputPassword;
+    private ImageView imageViewLogo;
+    private EditText inputUsuario;
+    private EditText inputSenha;
     private ProgressDialog pDialog;
     private SessionManager session;
     private SQLiteHandler db;
@@ -48,16 +49,17 @@ public class LoginActivity extends Activity {
             StrictMode.setThreadPolicy(policy);
         }
 
-        inputEmail = (EditText) findViewById(R.id.email);
-        inputPassword = (EditText) findViewById(R.id.password);
-        btnLogin = (Button) findViewById(R.id.btnLogin);
-        imgLogoPrincipal = (ImageView) findViewById(R.id.imgLogo);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
+        inputUsuario = (EditText) findViewById(R.id.nome_usuario);
+        inputSenha = (EditText) findViewById(R.id.senha);
+        btnLogin = (Button) findViewById(R.id.btnLogin);
+        imageViewLogo = (ImageView) findViewById(R.id.imgLogo);
 
         db = new SQLiteHandler(getApplicationContext());
-
         session = new SessionManager(getApplicationContext());
 
         if (session.isLoggedIn()) {
@@ -69,8 +71,8 @@ public class LoginActivity extends Activity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
-                String login = inputEmail.getText().toString().trim();
-                String password = inputPassword.getText().toString().trim();
+                String login = inputUsuario.getText().toString().trim();
+                String password = inputSenha.getText().toString().trim();
 
                 if (!login.isEmpty() && !password.isEmpty()) {
                     pDialog.setMessage("Autenticando...");
@@ -88,6 +90,7 @@ public class LoginActivity extends Activity {
         try {
             if (!Util.isInternet(LoginActivity.this)) {
                 Toast.makeText(getApplicationContext(), "Sem acesso à Internet!", Toast.LENGTH_LONG).show();
+                hideDialog();
             } else {
 
                 List<Usuario> usuario_login=AppServer.getRecursoUsuarioLogin(nome_login);
@@ -97,7 +100,8 @@ public class LoginActivity extends Activity {
                     String hash2=jObj.getString("usua_senha");
 
                     if (!hash1.equals(hash2)) {
-                        Toast.makeText(getApplicationContext(), "Usuário o senha inválidos!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Usuário ou senha não confere!", Toast.LENGTH_LONG).show();
+                        hideDialog();
                         session.setLogin(false);
                     } else {
 
@@ -118,15 +122,16 @@ public class LoginActivity extends Activity {
                         finish();
                     }
                 } else {
-                    Toast.makeText(getApplicationContext(), "Não cadastrado!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Usuário não cadastrado!", Toast.LENGTH_LONG).show();
+                    hideDialog();
                 }
             }
         } catch (JSONException e) {
             Log.d(TAG, e.getMessage());
-            Toast.makeText(getApplicationContext(),"Erro json: " + e.getMessage(),Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),"Erro json login: " + e.getMessage(),Toast.LENGTH_LONG).show();
         } catch (Exception e) {
             Log.d(TAG, e.getMessage());
-            Toast.makeText(getApplicationContext(),"Erro App: " + e.getMessage(),Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),"Erro geral login: " + e.getMessage(),Toast.LENGTH_LONG).show();
         } finally {
             hideDialog();
         }
@@ -141,4 +146,5 @@ public class LoginActivity extends Activity {
         if (pDialog.isShowing())
             pDialog.dismiss();
     }
+
 }

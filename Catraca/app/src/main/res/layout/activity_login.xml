@@ -1,76 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-              android:background="@color/bg_login"
-              android:gravity="center"
-              android:orientation="vertical"
-              android:paddingTop="1dp"
-              android:paddingBottom="10dp"
-              android:paddingLeft="10dp"
-              android:paddingRight="10dp"
-              android:weightSum="1">
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".activity.LoginActivity">
 
-    <ImageView
-        android:layout_width="192dp"
-        android:layout_height="1dp"
-        android:layout_weight="0.65"
-        android:id="@+id/imgLogo"
-        android:src="@drawable/ic_launcher_logo"/>
-
-    <LinearLayout
-        android:orientation="vertical"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="17dp">
-    </LinearLayout>
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:layout_scrollFlags="scroll|enterAlways"
+        tools:targetApi="lollipop"/>
+
+    <!--
+            <include layout="@layout/toolbar" />
+
+        </android.support.v7.widget.Toolbar> -->
+
+    <!--
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <include layout="@layout/toolbar" />
+    </android.support.design.widget.AppBarLayout>
+    -->
 
     <LinearLayout
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_height="fill_parent"
+        android:gravity="center"
         android:orientation="vertical"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:layout_weight="0.18">
+        android:padding="@dimen/activity_horizontal_margin">
 
-        <EditText
-            android:id="@+id/email"
-            android:layout_width="fill_parent"
+        <ImageView
+            android:id="@+id/imgLogo"
+            android:layout_width="192dp"
+            android:layout_height="192dp"
+            android:src="@drawable/ic_launcher_logo"
+            android:contentDescription="@string/app_name"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:id="@+id/textViewLogin"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:background="@color/white"
-            android:hint="@string/hint_email"
-            android:inputType="textEmailAddress"
-            android:padding="10dp"
-            android:textColor="@android:color/black"
-            android:textColorHint="@color/input_login_hint"
-            android:fontFamily="sans-serif"/>
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:textSize="25sp"
+            android:text="@string/titulo_login"/>
 
-        <EditText
-            android:id="@+id/password"
-            android:layout_width="fill_parent"
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/nome_usuario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_usuario"
+                android:inputType="textEmailAddress"
+                android:imeOptions="actionNext"
+                android:textColor="@color/inputs"
+                android:textColorHint="@color/hints" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:background="@color/white"
-            android:hint="@string/hint_password"
-            android:inputType="textPassword"
-            android:padding="10dp"
-            android:textColor="@android:color/black"
-            android:textColorHint="@color/input_login_hint"
-            android:fontFamily="sans-serif"/>
+            app:passwordToggleEnabled="true">
 
-        <!-- Login Button -->
+            <EditText
+                android:id="@+id/senha"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_senha"
+                android:inputType="textPassword"
+                android:imeOptions="actionDone"
+                android:textColor="@color/inputs"
+                android:textColorHint="@color/hints" />
+        </android.support.design.widget.TextInputLayout>
 
         <Button
             android:id="@+id/btnLogin"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dip"
-            android:background="@color/btn_login_bg"
+            android:layout_marginTop="25dp"
+            android:background="@color/botoes"
             android:text="@string/btn_login"
-            android:textColor="@color/btn_login" />
+            android:textColor="@color/white"
+            android:textAllCaps="true"
+            />
     </LinearLayout>
 
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

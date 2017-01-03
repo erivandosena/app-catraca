@@ -41,8 +41,6 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                 + KEY_UID + " TEXT,"
                 + KEY_CREATED_AT + " TEXT" + ")";
         db.execSQL(CREATE_LOGIN_TABLE);
-
-        Log.d(TAG, "Tabela criada no Banco de Bados.");
     }
 
     @Override
@@ -63,8 +61,6 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
         long id = db.insert(TABLE_USER, null, values);
         db.close();
-
-        Log.d(TAG, "Novo usuário inserido no SQLite: " + id);
     }
 
     public HashMap<String, String> getUserDetails() {
@@ -84,17 +80,14 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         }
         cursor.close();
         db.close();
-        Log.d(TAG, "Recuperando usuário do SQLite: " + user.toString());
 
         return user;
     }
 
     public void deleteUsers() {
         SQLiteDatabase db = this.getWritableDatabase();
-        // Delete All Rows
         db.delete(TABLE_USER, null, null);
         db.close();
-        Log.d(TAG, "Excluídas informações do usuário no SQLite!");
     }
 
 }

@@ -1,11 +1,13 @@
 package br.edu.unilab.catraca.activity;
 
-import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
@@ -34,17 +36,18 @@ import static java.lang.Float.parseFloat;
  * Created by erivando on 28/11/2016.
  */
 
-public class ExtratoActivity extends Activity {
+public class ExtratoActivity extends AppCompatActivity {
     private List<Extrato> extratoList = new ArrayList<>();
     private RecyclerView recyclerView;
     private ExtratoAdapter mAdapter;
     private Button btnPrincipal;
     private SQLiteHandler db;
     private SessionManager session;
+    private ProgressDialog pDialog;
 
     /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     * ATENÇÃO: Gerado automaticamente para implementar a App Indexing API.
+     * Consulte https://g.co/AppIndexing/AndroidStudio para obter mais informações.
      */
     private GoogleApiClient client;
 
@@ -53,6 +56,12 @@ public class ExtratoActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_extrato);
         btnPrincipal=(Button) findViewById(R.id.btnPrinciapl);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view_extrato);
         mAdapter = new ExtratoAdapter(extratoList);
@@ -68,6 +77,9 @@ public class ExtratoActivity extends Activity {
         if (!session.isLoggedIn()) {
             logoutUser();
         }
+
+        pDialog.setMessage("Atualizando...");
+        showDialog();
 
         HashMap<String, String> user=db.getUserDetails();
         String login=user.get("login");
@@ -85,10 +97,14 @@ public class ExtratoActivity extends Activity {
             }
         } catch (ParseException e) {
             e.printStackTrace();
+        } finally {
+            hideDialog();
         }
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        /**
+         * ATENÇÃO: Gerado automaticamente para implementar a App Indexing API.
+         * Consulte https://g.co/AppIndexing/AndroidStudio para obter mais informações.
+         */
         client=new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
 
         btnPrincipal.setOnClickListener(new View.OnClickListener() {
@@ -113,5 +129,15 @@ public class ExtratoActivity extends Activity {
         Intent intent=new Intent(ExtratoActivity.this, LoginActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    private void showDialog() {
+        if (!pDialog.isShowing())
+            pDialog.show();
+    }
+
+    private void hideDialog() {
+        if (pDialog.isShowing())
+            pDialog.dismiss();
     }
 }
