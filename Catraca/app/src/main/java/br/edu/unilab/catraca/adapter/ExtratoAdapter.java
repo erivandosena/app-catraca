@@ -21,12 +21,13 @@ public class ExtratoAdapter extends RecyclerView.Adapter<ExtratoAdapter.MyViewHo
     private List<Extrato> extratoList;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView descricao, data, valor;
+        public TextView descricao, data, local, valor;
 
         public MyViewHolder(View view) {
             super(view);
             descricao=(TextView) view.findViewById(R.id.descricao);
             data=(TextView) view.findViewById(R.id.data);
+            local=(TextView) view.findViewById(R.id.local);
             valor=(TextView) view.findViewById(R.id.valor);
         }
     }
@@ -49,6 +50,7 @@ public class ExtratoAdapter extends RecyclerView.Adapter<ExtratoAdapter.MyViewHo
         Extrato extrato=extratoList.get(position);
         holder.descricao.setText(extrato.getDescricao());
         holder.data.setText(extrato.getData());
+        holder.local.setText(extrato.getLocal());
         holder.valor.setText(extrato.getValor());
     }
 

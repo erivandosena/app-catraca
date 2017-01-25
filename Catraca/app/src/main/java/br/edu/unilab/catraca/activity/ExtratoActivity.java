@@ -43,7 +43,6 @@ public class ExtratoActivity extends AppCompatActivity {
     private Button btnPrincipal;
     private SQLiteHandler db;
     private SessionManager session;
-    private ProgressDialog pDialog;
 
     /**
      * ATENÇÃO: Gerado automaticamente para implementar a App Indexing API.
@@ -60,9 +59,6 @@ public class ExtratoActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        pDialog = new ProgressDialog(this);
-        pDialog.setCancelable(false);
-
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view_extrato);
         mAdapter = new ExtratoAdapter(extratoList);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
@@ -78,9 +74,6 @@ public class ExtratoActivity extends AppCompatActivity {
             logoutUser();
         }
 
-        pDialog.setMessage("Atualizando...");
-        showDialog();
-
         HashMap<String, String> user=db.getUserDetails();
         String login=user.get("login");
 
@@ -93,12 +86,10 @@ public class ExtratoActivity extends AppCompatActivity {
         try {
             for (Extrato extrato:extrato_usuario ) {
                 data = sdfEntrada.parse(extrato.getData());
-                prepareExtratoData(extrato.getDescricao(), sdfSaida.format(data), df.format(parseFloat(extrato.getValor())));
+                prepareExtratoData(extrato.getDescricao(), sdfSaida.format(data), extrato.getLocal(), df.format(parseFloat(extrato.getValor())));
             }
         } catch (ParseException e) {
             e.printStackTrace();
-        } finally {
-            hideDialog();
         }
 
         /**
@@ -117,8 +108,8 @@ public class ExtratoActivity extends AppCompatActivity {
         });
     }
 
-    private void prepareExtratoData(String descricao, String data, String valor) {
-        Extrato extrato = new Extrato(descricao, data, valor);
+    private void prepareExtratoData(String descricao, String data, String local, String valor) {
+        Extrato extrato = new Extrato(descricao, data, local, valor);
         extratoList.add(extrato);
         mAdapter.notifyDataSetChanged();
     }
@@ -131,13 +122,4 @@ public class ExtratoActivity extends AppCompatActivity {
         finish();
     }
 
-    private void showDialog() {
-        if (!pDialog.isShowing())
-            pDialog.show();
-    }
-
-    private void hideDialog() {
-        if (pDialog.isShowing())
-            pDialog.dismiss();
-    }
 }

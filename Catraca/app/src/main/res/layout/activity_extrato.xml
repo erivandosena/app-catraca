@@ -19,7 +19,7 @@
         app:layout_scrollFlags="scroll|enterAlways"
         tools:targetApi="lollipop"/>
 
-    <LinearLayout
+    <RelativeLayout
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -29,37 +29,40 @@
         android:weightSum="1">
 
         <TextView
-            android:id="@+id/extrato_titulo"
-            android:layout_width="wrap_content"
-            android:layout_height="15dp"
             android:text="@string/titulo_lista_extrato"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/extrato_titulo"
             android:textSize="16sp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
             android:textAllCaps="true"
             android:textStyle="bold"
-            android:gravity="bottom|center_horizontal"
-            android:layout_weight="0.18"/>
+            android:layout_marginTop="46dp"
+            android:gravity="center"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view_extrato"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:scrollbars="vertical"
-            android:layout_weight="0.83"/>
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/extrato_titulo"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="60dp"/>
 
         <Button
             android:id="@+id/btnPrinciapl"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dip"
             android:background="@color/botoes"
             android:text="@string/btn_principal"
             android:textColor="@color/white"
-            />
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout>

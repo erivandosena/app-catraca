@@ -12,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.util.support.Base64;
 import org.springframework.web.client.RestTemplate;
 
 import java.nio.charset.Charset;
@@ -35,7 +36,7 @@ public class AppServer {
     public static ArrayList<Usuario> getRecursoUsuarioLogin(String login) {
         ArrayList<Usuario> lista = new ArrayList<Usuario>();
         try {
-            final String url = AppConfig.URL_RECURSO_USUARIO + "/" + login;
+            final String url = AppConfig.URL_RECURSO_USUARIO + "/" + convertBase64(login);
             HttpHeaders requestHeaders = new HttpHeaders();
             requestHeaders.setAuthorization(AUTH_HEADER);
             requestHeaders.setContentType(new MediaType("application", "json", Charset.forName("utf-8")));
@@ -60,8 +61,9 @@ public class AppServer {
 
     public static ArrayList<Extrato> getRecursoExtratoUsuario(String login) {
         ArrayList<Extrato> lista = new ArrayList<Extrato>();
+
         try {
-            final String url = AppConfig.URL_RECURSO_EXTRATO + "/" + login;
+            final String url = AppConfig.URL_RECURSO_EXTRATO + "/" + convertBase64(login);
             HttpHeaders requestHeaders = new HttpHeaders();
             requestHeaders.setAuthorization(AUTH_HEADER);
             requestHeaders.setContentType(new MediaType("application", "json", Charset.forName("utf-8")));
@@ -88,6 +90,12 @@ public class AppServer {
         List<HttpMessageConverter<?>> converters = new ArrayList<HttpMessageConverter<?>>();
         converters.add(new MappingJackson2HttpMessageConverter());
         return converters;
+    }
+
+    private static String convertBase64(String nome){
+        String str = nome;
+        String strEncode = Base64.encodeBytes(str.getBytes());
+        return strEncode;
     }
 
 }

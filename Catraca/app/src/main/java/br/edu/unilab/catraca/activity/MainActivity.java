@@ -1,5 +1,6 @@
 package br.edu.unilab.catraca.activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnLogout;
     private SQLiteHandler db;
     private SessionManager session;
+    private ProgressDialog pDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
         db = new SQLiteHandler(getApplicationContext());
         session = new SessionManager(getApplicationContext());
 
+        pDialog = new ProgressDialog(this);
+
         if (!session.isLoggedIn()) {
             logoutUser();
         }
@@ -59,11 +63,16 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-            Intent intent = new Intent(MainActivity.this, ExtratoActivity.class);
-            startActivity(intent);
-            finish();
+
+                pDialog.setMessage("Consultando informações...");
+                new DialogoTask(pDialog).onPreExecute();
+
+                Intent intent = new Intent(MainActivity.this, ExtratoActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
+
         btnLogout.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -79,6 +88,12 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        new DialogoTask(pDialog).onPostExecute(null);
     }
 }
 

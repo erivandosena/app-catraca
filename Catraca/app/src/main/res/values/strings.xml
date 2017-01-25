@@ -8,7 +8,6 @@
     <string name="saldacao">Bem-vindo(a)</string>
     <string name="btn_logout">Sair</string>
     <string name="titulo_lista_extrato">Movimento nos Últimos 30 Dias</string>
-    <string name="titulo_login">Login de Usuário</string>
     <string name="titulo_activity_login">LOGIN</string>
     <string name="titulo_activity_extrato">EXTRATO</string>
 </resources>

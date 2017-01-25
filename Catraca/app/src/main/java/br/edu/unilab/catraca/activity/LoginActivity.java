@@ -52,8 +52,6 @@ public class LoginActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        pDialog = new ProgressDialog(this);
-        pDialog.setCancelable(false);
         inputUsuario = (EditText) findViewById(R.id.nome_usuario);
         inputSenha = (EditText) findViewById(R.id.senha);
         btnLogin = (Button) findViewById(R.id.btnLogin);
@@ -61,6 +59,8 @@ public class LoginActivity extends AppCompatActivity {
 
         db = new SQLiteHandler(getApplicationContext());
         session = new SessionManager(getApplicationContext());
+
+        pDialog = new ProgressDialog(this);
 
         if (session.isLoggedIn()) {
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
@@ -76,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (!login.isEmpty() && !password.isEmpty()) {
                     pDialog.setMessage("Autenticando...");
-                    showDialog();
+                    new DialogoTask(pDialog).onPreExecute();
                     checkLogin(login, password);
                 } else {
                     Toast.makeText(getApplicationContext(), "Insira seus dados de acesso!", Toast.LENGTH_LONG).show();
@@ -90,7 +90,6 @@ public class LoginActivity extends AppCompatActivity {
         try {
             if (!Util.isInternet(LoginActivity.this)) {
                 Toast.makeText(getApplicationContext(), "Sem acesso à Internet!", Toast.LENGTH_LONG).show();
-                hideDialog();
             } else {
 
                 List<Usuario> usuario_login=AppServer.getRecursoUsuarioLogin(nome_login);
@@ -101,7 +100,6 @@ public class LoginActivity extends AppCompatActivity {
 
                     if (!hash1.equals(hash2)) {
                         Toast.makeText(getApplicationContext(), "Usuário ou senha não confere!", Toast.LENGTH_LONG).show();
-                        hideDialog();
                         session.setLogin(false);
                     } else {
 
@@ -123,7 +121,6 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 } else {
                     Toast.makeText(getApplicationContext(), "Usuário não cadastrado!", Toast.LENGTH_LONG).show();
-                    hideDialog();
                 }
             }
         } catch (JSONException e) {
@@ -133,18 +130,14 @@ public class LoginActivity extends AppCompatActivity {
             Log.d(TAG, e.getMessage());
             Toast.makeText(getApplicationContext(),"Erro geral login: " + e.getMessage(),Toast.LENGTH_LONG).show();
         } finally {
-            hideDialog();
+            new DialogoTask(pDialog).onPostExecute(null);
         }
     }
 
-    private void showDialog() {
-        if (!pDialog.isShowing())
-            pDialog.show();
-    }
-
-    private void hideDialog() {
-        if (pDialog.isShowing())
-            pDialog.dismiss();
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        new DialogoTask(pDialog).onPostExecute(null);
     }
 
 }

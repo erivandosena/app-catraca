@@ -19,29 +19,14 @@
         app:layout_scrollFlags="scroll|enterAlways"
         tools:targetApi="lollipop"/>
 
-    <!--
-            <include layout="@layout/toolbar" />
-
-        </android.support.v7.widget.Toolbar> -->
-
-    <!--
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-
-        <include layout="@layout/toolbar" />
-    </android.support.design.widget.AppBarLayout>
-    -->
-
     <LinearLayout
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="@dimen/activity_horizontal_margin">
+        android:padding="@dimen/activity_horizontal_margin"
+        android:weightSum="1">
 
         <ImageView
             android:id="@+id/imgLogo"
@@ -49,22 +34,12 @@
             android:layout_height="192dp"
             android:src="@drawable/ic_launcher_logo"
             android:contentDescription="@string/app_name"
-            android:layout_marginBottom="10dp"/>
-
-        <TextView
-            android:id="@+id/textViewLogin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:textSize="25sp"
-            android:text="@string/titulo_login"/>
+            android:layout_marginBottom="10dp"
+            android:layout_weight="0.24"/>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
             <EditText
                 android:id="@+id/nome_usuario"
                 android:layout_width="match_parent"
@@ -73,7 +48,8 @@
                 android:inputType="textEmailAddress"
                 android:imeOptions="actionNext"
                 android:textColor="@color/inputs"
-                android:textColorHint="@color/hints" />
+                android:textColorHint="@color/hints"
+                />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
