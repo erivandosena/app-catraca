@@ -31,7 +31,7 @@ import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
 
 public class AppServer {
 
-    private static final HttpAuthentication AUTH_HEADER  = new HttpBasicAuthentication("catraca", "CaTr@CaUniLab2015");
+    private static final HttpAuthentication AUTH_HEADER  = new HttpBasicAuthentication("user", "12345678");
 
     public static ArrayList<Usuario> getRecursoUsuarioLogin(String login) {
         ArrayList<Usuario> lista = new ArrayList<Usuario>();
