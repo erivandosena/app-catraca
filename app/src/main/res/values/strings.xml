@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Catraca Unilab</string>
+    <string name="hint_usuario">Usuário SIG</string>
+    <string name="hint_senha">Senha SIG</string>
+    <string name="btn_login">Entrar</string>
+    <string name="btn_extrato">Extrato</string>
+    <string name="btn_principal">Principal</string>
+    <string name="saldacao">Bem-vindo(a)</string>
+    <string name="btn_logout">Sair</string>
+    <string name="titulo_lista_extrato">Movimento nos Últimos 30 Dias</string>
+    <string name="titulo_activity_login">LOGIN</string>
+    <string name="titulo_activity_extrato">EXTRATO</string>
+</resources>

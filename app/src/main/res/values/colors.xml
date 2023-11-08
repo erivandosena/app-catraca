@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#2196F3</color>
+    <color name="colorPrimaryDark">#2196F3</color>
+    <color name="colorAccent">#03A9F4</color>
+    <color name="white">#ffffff</color>
+    <color name="labels">#333333</color>
+    <color name="inputs">#222222</color>
+    <color name="botoes">#2196F3</color>
+    <color name="hints">#999999</color>
+    <color name="valor">#4d4d4d</color>
+    <color name="descricao">#222222</color>
+</resources>
